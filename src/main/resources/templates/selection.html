@@ -24,14 +24,13 @@
               th:text="${member.name}" />
     </select>
   </div>
-
   <div>
     <label for="movie">상영작</label>
     <select name="screeningInfoId" id="movie">
       <option value="">영화선택</option>
       <option th:each="screeningInfo : ${screeningInfos}"
               th:value="${screeningInfo.screeningInfoId}"
-              th:text="${screeningInfo.getMovie().getTitle()}"/>
+              th:text="${screeningInfo.getMovie().getTitle()} + ' ' + ${screeningInfo.remnant} + ' ' + ${screeningInfo.startTime}"/>
     </select>
   </div>
   <div>

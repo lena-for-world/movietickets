@@ -7,8 +7,9 @@ import lombok.Setter;
 @Setter
 public class ReserveForm {
 
-    private int movieId;
+    private Long screeningInfoId;
     private String memberId;
-    private int price;
+    private int adultCount;
+    private int childCount;
 
 }

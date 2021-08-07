@@ -8,11 +8,44 @@
 <h2> selection page</h2>
 <tbody>
   <tr th:each="movie: ${movies}">
-    <td th:text="${movie.getName()}"></td>
-    <td th:text="${movie.runningTime}"></td>
-    <td th:text="${movie.startTime}"></td>
+    <td th:text="${movie.getTitle()}"></td>
+    <td th:text="${movie.getRunningTime()}"></td>
     <br>
   </tr>
 </tbody>
+
+<form role="form" action="/reserve" th:object="${reserveForm}" method="post">
+  <div>
+    <label th:for="memberId">주문회원</label>
+    <select th:field="*{memberId}" id="member">
+      <option value="">회원선택</option>
+      <option th:each="member : ${members}"
+              th:value="${member.id}"
+              th:text="${member.name}" />
+    </select>
+  </div>
+
+  <div>
+    <label for="movie">상영작</label>
+    <select name="screeningInfoId" id="movie">
+      <option value="">영화선택</option>
+      <option th:each="screeningInfo : ${screeningInfos}"
+              th:value="${screeningInfo.screeningInfoId}"
+              th:text="${screeningInfo.getMovie().getTitle()}"/>
+    </select>
+  </div>
+  <div>
+    <p>관람인원</p>
+  </div>
+  <div>
+    <label th:for="adultCount">성인</label>
+    <input type="number" th:field="*{adultCount}" id="adultCount" placeholder="관람 인원 수를 입력하세요">
+  </div>
+  <div>
+    <label th:for="childCount">청소년</label>
+    <input type="number" th:field="*{childCount}" id="childCount" placeholder="관람 인원 수를 입력하세요">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 </body>
 </html>

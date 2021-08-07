@@ -15,7 +15,7 @@ public class ReservationController {
 
     private final ReservationService reservationService;
 
-    @GetMapping("/reserve/detail/{movieId}")
+    /*@GetMapping("/reserve/detail/{movieId}")
     public String selectComplete(@PathVariable("movieId") int movieId, Model model) {
         // 영화 정보 싣고, 예약 폼 실어서 model에 보낼 것
         model.addAttribute("movie", reservationService.findMovie(movieId));
@@ -30,7 +30,7 @@ public class ReservationController {
         Reservation reservation = Reservation.createReservation(reserveForm.getMovieId(), reserveForm.getMemberId(), reserveForm.getPrice());
         reservationService.save(reservation);
         return "redirect:/";
-    }
+    }*/
 
     @GetMapping("/reserve/list")
     public String reservationlist() {

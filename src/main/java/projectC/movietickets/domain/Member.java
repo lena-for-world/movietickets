@@ -2,37 +2,35 @@ package projectC.movietickets.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Getter
+@Getter @Setter
 @NoArgsConstructor
 public class Member {
 
     @Id
     @Column(name = "member_id")
     private String id;
-    private String password;
+    private String name;
     private int age;
-    private String phoneNumber;
-    private String email;
 
-    @OneToMany(mappedBy = "memberId")
+    // cascade 사용
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Reservation> reservedList = new ArrayList<>();
 
-    public static Member createMember(String id, String password, int age, String phoneNumber, String email) {
+    public static Member makeMember(String id, String name, int age) {
         Member member = new Member();
         member.id = id;
-        member.password = password;
+        member.name= name;
         member.age = age;
-        member.phoneNumber = phoneNumber;
-        member.email = email;
         return member;
     }
 }

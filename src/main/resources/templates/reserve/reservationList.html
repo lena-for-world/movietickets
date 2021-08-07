@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h2> reservation list page</h2>
+<thead>
+  <tr th:each="reservation: ${reservations}">
+    <td th:text="${reservation.getMember().getName()}"></td>
+    <td th:text="${reservation.getScreeningInfo().getMovie().getTitle()}"></td>
+    <td th:text="${reservation.totalPrice}"></td>
+    <td th:text="${reservation.adultCount}"></td>
+    <td th:text="${reservation.childCount}"></td>
+    <td th:text="${reservation.getScreeningInfo().startTime}"></td><td>
+    <a href="#" th:href="@{/reserve/{id}/delete (id=${reservation.reservationCode})}" role="button">예매취소</a>
+  </td>
+    <br>
+  </tr>
+</thead>
+</body>
+</html>

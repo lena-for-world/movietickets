@@ -11,6 +11,10 @@ public class MemberRepository {
 
     private final EntityManager em;
 
+    public Member findMember(String id) {
+        return em.find(Member.class, id);
+    }
+
     public void save(Member member) {
         em.persist(member);
     }

@@ -60,9 +60,6 @@ public class InitDb {
 
             Movie movie2 = Movie.makeMovie("Avengers", LocalTime.of(3,00), Fifteen, screeningInfo21, screeningInfo22);
             em.persist(movie2);
-
-            Reservation reservation = Reservation.createReservation(movie2.getId(), member2.getId(), 1, 0, member2, screeningInfo22);
-            em.persist(reservation);
         }
     }
 

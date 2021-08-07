@@ -9,10 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Getter @Setter
+@Getter
 @NoArgsConstructor
 public class Member {
 

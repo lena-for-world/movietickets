@@ -1,6 +1,9 @@
 package projectC.movietickets.domain;
 
+import java.time.Instant;
 import java.time.LocalTime;
+import java.time.ZoneOffset;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,10 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Getter @Setter
+@Getter
 @NoArgsConstructor
 public class ScreeningInfo {
 
@@ -38,16 +40,20 @@ public class ScreeningInfo {
         screeningInfo.remnant = remnant;
         screeningInfo.startTime = startTime;
 
-        LocalTime newLocalTime = startTime;
-        //newLocalTime.plusHours(movie.getRunningTime().getHour());
-        //newLocalTime.plusMinutes(movie.getRunningTime().getMinute());
-
-        screeningInfo.endTime = newLocalTime;
         screeningInfo.adultPrice = adultPrice;
         screeningInfo.childPrice = childPrice;
 
         return screeningInfo;
 
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    public void setEndTime(LocalTime runningTime) {
+        LocalTime newLocalTime = this.startTime;
+        this.endTime = newLocalTime.plusHours(runningTime.getHour()).plusMinutes(runningTime.getMinute());
     }
 
     public void addRemnant(int count) {

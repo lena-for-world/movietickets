@@ -14,11 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Getter @Setter
+@Getter
 @NoArgsConstructor
 public class Movie {
 
@@ -44,6 +42,7 @@ public class Movie {
         movie.rate = rate;
         for(ScreeningInfo screeningInfo : screeningInfos) {
             movie.addScreeningInfo(screeningInfo);
+            screeningInfo.setEndTime(runningTime); // dependent!!!
         }
         return movie;
     }
